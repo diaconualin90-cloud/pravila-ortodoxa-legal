@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ro"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Invitație în grupul de rugăciune – Pravila Ortodoxă</title>
+<style>body{font-family:-apple-system,system-ui,sans-serif;max-width:32rem;margin:2rem auto;padding:0 1rem;line-height:1.5}
+code{display:block;word-break:break-all;background:#f3efe6;padding:.75rem;border-radius:.5rem}
+a.btn{display:inline-block;background:#6b1d1d;color:#fff;padding:.8rem 1.2rem;border-radius:.5rem;text-decoration:none;margin:.5rem 0}</style></head>
+<body>
+<h1>Invitație în grup</h1>
+<p>Ai fost invitat într-un grup de rugăciune din aplicația <strong>Pravila Ortodoxă</strong>.</p>
+<p id="none" hidden>Linkul pare incomplet. Cere o invitație nouă.</p>
+<div id="ok" hidden>
+<p><a class="btn" id="open" href="#">Deschide în aplicație</a></p>
+<p>Dacă aplicația nu se deschide, instalează-o, creează-ți contul, apoi la <em>Grup</em> lipește codul:</p>
+<code id="code"></code>
+<p>Invitația poate fi folosită o singură dată (codul din 6 cifre expiră în 48 de ore).</p>
+</div>
+<script>
+(function(){
+  var m=/[#&]t=([A-Za-z0-9_-]{32,128})/.exec(location.hash)||/^#([0-9]{6})$/.exec(location.hash);
+  if(!m){document.getElementById('none').hidden=false;return;}
+  var t=m[1],link='ro.pravilaortodoxa.app://invite?t='+t;
+  document.getElementById('ok').hidden=false;
+  document.getElementById('code').textContent=t;
+  document.getElementById('open').href=link;
+  setTimeout(function(){location.href=link;},400);
+})();
+</script></body></html>
